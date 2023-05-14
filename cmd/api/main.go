@@ -9,6 +9,7 @@ import (
 	"os"
 	"topio/internal/repository"
 	dbrepo "topio/internal/repository/dbRepo"
+	"topio/openAI"
 )
 
 const port = 8080
@@ -17,6 +18,7 @@ type application struct {
 	DSN    string
 	Domain string
 	DB     repository.DatabaseRepo
+	AI     ai.AI
 }
 
 func main() {
@@ -35,6 +37,8 @@ func main() {
 	}
 	app.DB = &dbrepo.PostgresDBRepo{DB: conn}
 	defer app.DB.Connection().Close()
+
+	app.AI = ai.AI{Client: ai.InitAI()}
 
 	log.Println("Starting application on port", port)
 
