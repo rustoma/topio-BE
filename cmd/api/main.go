@@ -36,6 +36,7 @@ func main() {
 		log.Fatal(err)
 	}
 	app.DB = &dbrepo.PostgresDBRepo{DB: conn}
+	app.DB.CreateTables()
 	defer app.DB.Connection().Close()
 
 	app.AI = ai.AI{Client: ai.InitAI()}
