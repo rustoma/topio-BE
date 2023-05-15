@@ -98,9 +98,9 @@ func (ai *AI) generateArrayOfProductNamesFromBestToWorse(products []ProductWithG
 					Content: "Na podstawie ogólnie dostępnych informacji posortuj listę od najlepszego do najgorszego według kryteriów opisanych poniżej w punktach:" +
 						"1. Nie modyfikuj nazw. Identyczne nazwy z listy powinny się znaleźć w danych wyjściowych." +
 						"2. Zwróć dane jako strukturę danych array" +
-						"3. Ta pojedyncza array powinna być jednynym elementem zwracanym." +
-						"4. Dane wejściowe znajdują się pomiędzy potrójnym backtickiem" +
-						"```" + ai.prepareBaseDescriptionForAI(productNames) + "```",
+						"3. Ta pojedyncza array powinna być jednynym elementem zwracanym. Zwróć tylko i wyłącznie array bez dodatkowego opisu." +
+						"4. Dane wejściowe znajdują się poniżej:" +
+						ai.prepareBaseDescriptionForAI(productNames),
 				},
 			},
 			Temperature: 0,
