@@ -1,11 +1,11 @@
 package scrapper
 
-func Scrap() []Product {
+func Scrap(domain string, url string) []Product {
 	mediaExpertScrapper := MediaExpertScrapper{
 		config: getScrapperConfig(),
 	}
 
-	products := mediaExpertScrapper.Scrap("https://www.mediaexpert.pl", "/agd-male/sprzatanie/odkurzacze-pionowe")
+	products := mediaExpertScrapper.Scrap(domain, url)
 
 	return products
 }
