@@ -16,5 +16,8 @@ func (app *application) routes() http.Handler {
 
 	mux.Get("/", app.Home)
 
+	mux.Post("/page/create", app.CreatePage)
+	mux.Post("/product/create", app.CreateProducts)
+
 	return mux
 }
