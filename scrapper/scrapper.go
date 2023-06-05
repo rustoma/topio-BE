@@ -1,11 +1,15 @@
 package scrapper
 
-func Scrap(domain string, url string) []Product {
+func Scrap(domain string, url string, simplifiedProductNames bool) ([]Product, error) {
 	mediaExpertScrapper := MediaExpertScrapper{
 		config: getScrapperConfig(),
 	}
 
-	products := mediaExpertScrapper.Scrap(domain, url)
+	products, err := mediaExpertScrapper.Scrap(domain, url, simplifiedProductNames)
 
-	return products
+	if err != nil {
+		return nil, err
+	}
+
+	return products, nil
 }
