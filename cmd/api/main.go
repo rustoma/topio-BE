@@ -7,12 +7,11 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"topio/internal/repository"
 	dbrepo "topio/internal/repository/dbRepo"
 	"topio/openAI"
 )
-
-const port = 8080
 
 type application struct {
 	DSN    string
@@ -24,7 +23,8 @@ type application struct {
 func main() {
 	var app application
 
-	err := godotenv.Load()
+	err := godotenv.Load(filepath.Join(".", ".env"))
+
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -41,10 +41,10 @@ func main() {
 
 	app.AI = ai.AI{Client: ai.InitAI()}
 
-	log.Println("Starting application on port", port)
+	log.Println("Starting application on port", os.Getenv("PORT"))
 
 	//start a web server
-	err = http.ListenAndServe(fmt.Sprintf(":%d", port), app.routes())
+	err = http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("PORT")), app.routes())
 	if err != nil {
 		log.Fatal(err)
 	}
